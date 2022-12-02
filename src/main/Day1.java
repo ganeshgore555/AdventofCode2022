@@ -9,7 +9,7 @@ public class Day1 {
 
 	public static void main(String[] args) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day1Part1Input.txt")));
+			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day1Input.txt")));
 			String line = null;
 			long sum = 0;
 			long max = 0;
@@ -35,11 +35,10 @@ public class Day1 {
 			if(sum > max) {
 				max = sum;
 			}
-			System.out.println(max);
-			System.out.println(max1);
-			System.out.println(max2);
+			System.out.println("1st max " + max);
+			System.out.println("2nd max " + max1);
+			System.out.println("3rd max " + max2);
 			System.err.println(max + max1 + max2);
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
