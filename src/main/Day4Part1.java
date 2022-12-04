@@ -21,7 +21,7 @@ public class Day4Part1 {
 				int pair2Lower = Integer.parseInt(pair2[0]);
 				int pair2Upper = Integer.parseInt(pair2[1]);
 
-				if((pair1Upper >= pair2Lower && pair1Upper <= pair2Upper) || (pair2Upper >= pair1Lower && pair2Upper <= pair1Upper)) {
+				if((pair2Lower >= pair1Lower && pair2Upper <= pair1Upper) || (pair1Lower >= pair2Lower && pair1Upper <= pair2Upper)) {
 					System.out.println(pair1Lower + "-" + pair1Upper + ";" + pair2Lower + "-" + pair2Upper);
 					total++;
 				}
