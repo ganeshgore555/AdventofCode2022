@@ -11,8 +11,8 @@ public class Day9Part2 {
 	static int n = 10;
 	static int[][]matrix = new int[row][col];
 	static int[][]knots = new int[n][2];
-	static int r = 500;
-	static int c = 500;
+	static int r = 499;
+	static int c = 499;
 	static int total = 0;
 	public static void main(String[] args) {
 		try {			
@@ -64,6 +64,19 @@ public class Day9Part2 {
 						}
 					}
 				}
+				/*
+				System.out.println(line);
+				int[][]grid = new int[row][col];
+				for(int i = 0; i < knots.length; i++) {
+					grid[knots[i][0]][knots[i][1]] = i;
+				}				
+				for(int i = 0; i < row; i++) {
+					for(int j = 0; j < col; j++) {
+						System.out.print(grid[i][j]);
+					}
+					System.out.println("");
+				}
+				*/
 			}
 			/*
 			for(int i = 0; i < row; i++) {
@@ -114,9 +127,23 @@ public class Day9Part2 {
 		}else if(hRow == tRow-1 && hCol < tCol-1) {
 			tCol = tCol - 1;
 			tRow = tRow - 1;							
+		}else if(hCol == tCol-2 && hRow == tRow-2) {
+			tRow = tRow - 1;
+			tCol = tCol - 1;							
+		}else if(hCol == tCol+2 && hRow == tRow-2) {
+			tRow = tRow - 1;
+			tCol = tCol + 1;							
+		}else if(hCol == tCol-2 && hRow == tRow+2) {
+			tRow = tRow + 1;
+			tCol = tCol - 1;							
+		}else if(hCol == tCol+2 && hRow == tRow+2) {
+			tRow = tRow + 1;
+			tCol = tCol + 1;							
 		}
+		
 		knots[knot][0] = tRow;
 		knots[knot][1] = tCol;
+		
 		if(knot == n-1 && matrix[tRow][tCol] == 0) {
 			matrix[tRow][tCol] = 1;
 			total = total + 1;
