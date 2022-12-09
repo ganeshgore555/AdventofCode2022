@@ -11,8 +11,8 @@ public class Day9Part2 {
 	static int n = 10;
 	static int[][]matrix = new int[row][col];
 	static int[][]knots = new int[n][2];
-	static int r = 499;
-	static int c = 499;
+	static int r = 500;
+	static int c = 500;
 	static int total = 0;
 	public static void main(String[] args) {
 		try {			
@@ -24,6 +24,7 @@ public class Day9Part2 {
 				knots[i][0] = r;
 				knots[i][1] = c;
 			}
+			System.out.println("Start");
 			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day9Input.txt")));
 			while((line = br.readLine()) != null){
 				lineCount++;
@@ -64,6 +65,14 @@ public class Day9Part2 {
 					}
 				}
 			}
+			/*
+			for(int i = 0; i < row; i++) {
+				for(int j = 0; j < col; j++) {
+					System.out.print(matrix[i][j]);
+				}
+				System.out.println("");
+			}
+			*/
 			System.out.println(lineCount);
 			System.out.println(total);		
 		} catch (IOException e) {
