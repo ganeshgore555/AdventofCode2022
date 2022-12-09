@@ -24,7 +24,6 @@ public class Day9Part2 {
 				knots[i][0] = r;
 				knots[i][1] = c;
 			}
-			System.out.println("Start");
 			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day9Input.txt")));
 			while((line = br.readLine()) != null){
 				lineCount++;
@@ -86,7 +85,6 @@ public class Day9Part2 {
 				System.out.println("");
 			}
 			*/
-			System.out.println(lineCount);
 			System.out.println(total);		
 		} catch (IOException e) {
 			e.printStackTrace();
