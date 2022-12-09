@@ -63,28 +63,7 @@ public class Day9Part2 {
 						}
 					}
 				}
-				/*
-				System.out.println(line);
-				int[][]grid = new int[row][col];
-				for(int i = 0; i < knots.length; i++) {
-					grid[knots[i][0]][knots[i][1]] = i;
-				}				
-				for(int i = 0; i < row; i++) {
-					for(int j = 0; j < col; j++) {
-						System.out.print(grid[i][j]);
-					}
-					System.out.println("");
-				}
-				*/
 			}
-			/*
-			for(int i = 0; i < row; i++) {
-				for(int j = 0; j < col; j++) {
-					System.out.print(matrix[i][j]);
-				}
-				System.out.println("");
-			}
-			*/
 			System.out.println(total);		
 		} catch (IOException e) {
 			e.printStackTrace();
