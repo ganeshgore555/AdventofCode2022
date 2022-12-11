@@ -29,14 +29,13 @@ public class Day11Part1 {
 			LinkedHashMap<Integer,Monkey> monkeyMap = new LinkedHashMap<Integer,Monkey>();
 			Monkey currentMonkey = null;
 			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day11Input.txt")));
+			// Build List of monkeys
 			while((line = br.readLine()) != null){
-				System.out.println(line);
 				String[] instruction = null;
 				String[] list = null;
 				if(line.contains("Monkey")) {
 					instruction = line.split(" ");
 					number = Integer.parseInt(instruction[1].substring(0, instruction[1].length()-1));
-					System.out.println("Number:"  + number);
 					currentMonkey = inst.new Monkey();
 				}else if(line.contains("Starting items")) {
 					instruction = line.split(":");
@@ -44,7 +43,6 @@ public class Day11Part1 {
 					if(list != null) {
 						LinkedList<Integer>itemList = currentMonkey.itemList;
 						for(String s : list) {
-							System.out.println("Item:" + s);
 							itemList.add(Integer.parseInt(s.trim()));
 						}
 					}
@@ -52,20 +50,16 @@ public class Day11Part1 {
 					instruction = line.split(" ");
 					currentMonkey.worry = instruction[instruction.length - 1].trim();
 					currentMonkey.worryOperator = instruction[instruction.length - 2].trim();
-					System.out.println("Operation:" + currentMonkey.worryOperator + " " + currentMonkey.worry );
 					
 				}else if(line.contains("Test")) {
 					instruction = line.split(" ");
 					currentMonkey.testDivisible = Integer.parseInt(instruction[instruction.length - 1]);
-					System.out.println("Test:" + currentMonkey.testDivisible);
 				}else if(line.contains("true")) {
 					instruction = line.split(" ");
 					currentMonkey.testTrue = Integer.parseInt(instruction[instruction.length - 1]);
-					System.out.println("Test true:" + currentMonkey.testTrue);
 				}else if(line.contains("false")) {
 					instruction = line.split(" ");
 					currentMonkey.testFalse = Integer.parseInt(instruction[instruction.length - 1]);
-					System.out.println("Test false:" + currentMonkey.testFalse);
 					monkeyMap.put(number, currentMonkey);
 				}
 			}
@@ -73,7 +67,6 @@ public class Day11Part1 {
 			int round = 1;
 			while(round <= 20) {
 				for(Integer num : monkeyMap.keySet()) {
-					System.out.println("Round" + round + " Number:" +  num);
 					currentMonkey = monkeyMap.get(num);
 					LinkedList<Integer> newItemList = new LinkedList<Integer>();
 					for(Integer item : currentMonkey.itemList) {
@@ -110,7 +103,6 @@ public class Day11Part1 {
 				}else if(currentMonkey.inspectCount > max2) {
 					max2 = currentMonkey.inspectCount;
 				}
-				System.out.println("Inspection Count:" + currentMonkey.inspectCount);
 			}
 			System.out.println("Monkey Business:" + max1*max2);
 		} catch (IOException e) {
