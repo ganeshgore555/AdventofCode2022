@@ -15,7 +15,7 @@ public class Day11Part2 {
 		LinkedList<Long> itemList = new LinkedList<Long>();
 		String worry;
 		String worryOperator;
-		int testDivisible;
+		long testDivisible;
 		int testTrue;
 		int testFalse;
 		long inspectCount;
@@ -56,7 +56,7 @@ public class Day11Part2 {
 					
 				}else if(line.contains("Test")) {
 					instruction = line.split(" ");
-					currentMonkey.testDivisible = Integer.parseInt(instruction[instruction.length - 1]);
+					currentMonkey.testDivisible = Long.parseLong(instruction[instruction.length - 1]);
 					System.out.println("Test:" + currentMonkey.testDivisible);
 				}else if(line.contains("true")) {
 					instruction = line.split(" ");
