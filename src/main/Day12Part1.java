@@ -12,12 +12,18 @@ import java.util.Map;
 public class Day12Part1 {
 
 	static int visited[][] = null;
-	static int m = 41;//41
-	static int n = 154;//154
+	static int m=0;
+	static int n=0;
 
 	public static void main(String[] args) {
 		try {
 			String line = "";
+			BufferedReader tempReader = new BufferedReader(new FileReader(new File(".//resources//Day12Input.txt")));
+			while ((line = tempReader.readLine()) != null) { //Get Grid Dimensions
+				if(n==0)
+					n=line.length();
+				m++;
+			}
 			char[][] grid = new char[m][n];
 			visited = new int[m][n];
 			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day12Input.txt")));
@@ -31,10 +37,12 @@ public class Day12Part1 {
 					if (c == 'S') {
 						src[0][0] = row;
 						src[0][1] = col;
+						c = 'a';
 					}
 					if (c == 'z') {
 						dest[0][0] = row;
 						dest[0][1] = col;
+						c = 'z';
 					}
 					grid[row][col] = c;
 					col++;
@@ -55,25 +63,10 @@ public class Day12Part1 {
 
 	static int bestPath(char[][] grid, int curRow, int curCol, int[][] dest, int minStep, int step) {
 
-		if(step > minStep) {
-			return minStep;
-		}
-		
 		if (curRow == dest[0][0] && curCol == dest[0][1]) {
-			minStep = Math.min(step, minStep);
-			
-			System.out.println("Path:" + step);
-			for(int i = 0; i < m; i++) {
-				for(int j = 0; j < n; j++) {
-					System.out.print(visited[i][j] +  " ");
-				}
-				System.out.println("");
-			}
-			
+			minStep = Math.min(step, minStep);			
 			return minStep;
 		}
-		if(step > minStep)
-			return minStep;
 		
 		visited[curRow][curCol] = step;
 		// go to the bottom cell
@@ -93,15 +86,13 @@ public class Day12Part1 {
 			minStep = bestPath(grid, curRow, curCol - 1, dest, minStep, step + 1);
 		}
 		
-		if(grid[curRow][curCol] != 'S')
-				visited[curRow][curCol] = 0;
+		visited[curRow][curCol] = 0;
 		
 		return minStep;
 	}
 
 	static boolean isPossible(char[][] grid, int curRow, int curCol, int row, int col) {
-		if (row == -1 || row == m || col == -1 || col == n || visited[row][col] != 0 || grid[curRow][curCol] == 'E'
-				|| (grid[curRow][curCol] != 'S' && (int) grid[row][col] > ((int) grid[curRow][curCol] + 1)))
+		if (row == -1 || row == m || col == -1 || col == n || visited[row][col] != 0 || ((int) grid[row][col] > ((int) grid[curRow][curCol] + 1)))
 			return false;
 
 		return true;
