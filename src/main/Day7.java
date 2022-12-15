@@ -16,8 +16,8 @@ public class Day7 {
 		try {
 			String line = null;
 			int total = 0;
-			TreeNode root = new TreeNode("/",null);
-			TreeNode currentNode = null;
+			Directory root = new Directory("/",null);
+			Directory currentNode = null;
 			root.parent = null;
 			root.isfile = false;
 			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day7Input.txt")));
@@ -30,8 +30,8 @@ public class Day7 {
 					}else if(instruction[2].equals("..")) {
 						currentNode = currentNode.parent;
 					}else {
-						TreeNode dirNode = new TreeNode(instruction[2], currentNode);
-						for(TreeNode node : currentNode.child) {
+						Directory dirNode = new Directory(instruction[2], currentNode);
+						for(Directory node : currentNode.child) {
 							if(node.equals(dirNode)) {
 								currentNode = node;
 								break;
@@ -43,7 +43,7 @@ public class Day7 {
 				}else if(line.contains("dir")) {
 					instruction = line.split(" ");
 					String dirName = instruction[1];
-					TreeNode dirNode = new TreeNode(dirName, currentNode);
+					Directory dirNode = new Directory(dirName, currentNode);
 					if(!currentNode.child.contains(dirNode)) {
 						dirNode.isfile = false;
 						dirNode.size = Integer.MIN_VALUE;
@@ -53,7 +53,7 @@ public class Day7 {
 					instruction = line.split(" ");
 					String fileName = instruction[1];
 					int fileSize = Integer.parseInt(instruction[0]);
-					TreeNode fileNode = new TreeNode(fileName, currentNode);
+					Directory fileNode = new Directory(fileName, currentNode);
 					if(!currentNode.child.contains(fileNode)) {
 						fileNode.isfile = true;
 						fileNode.size = fileSize;
@@ -77,12 +77,12 @@ public class Day7 {
 		
 	}
 
-	private static int getSumOfDirSizeAtMost100000(TreeNode parent) {
+	private static int getSumOfDirSizeAtMost100000(Directory parent) {
 		int size = 0;
 		if(parent.size <= 100000) {
 			size = parent.size;
 		}
-		for(TreeNode node : parent.child) {
+		for(Directory node : parent.child) {
 			if(!node.isfile) {
 				size = size + getSumOfDirSizeAtMost100000(node);
 			}
@@ -90,9 +90,9 @@ public class Day7 {
 		return size;
 	}
 
-	private static int updateSize(TreeNode parent) {
+	private static int updateSize(Directory parent) {
 		int size = 0;
-		for(TreeNode node : parent.child) {
+		for(Directory node : parent.child) {
 			if(node.isfile) {
 				size = size + node.size;
 			}else {
@@ -104,8 +104,8 @@ public class Day7 {
 	}
 	
 	
-	private static int minSizeDir(TreeNode parent, int moreSpaceNeeded, int currentMin) {
-		for(TreeNode node : parent.child) {
+	private static int minSizeDir(Directory parent, int moreSpaceNeeded, int currentMin) {
+		for(Directory node : parent.child) {
 			if(!node.isfile) {
 				if(node.size >= moreSpaceNeeded && node.size < currentMin) {
 					currentMin = node.size;
