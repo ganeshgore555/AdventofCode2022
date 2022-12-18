@@ -53,7 +53,6 @@ public class Day15Part2 {
 						Coordinate beacon = map.get(sensor);
 						int distance = Math.abs(sensor.y-beacon.y) + Math.abs(sensor.x-beacon.x);
 						int distanceTemp = Math.abs(sensor.y-j) + Math.abs(sensor.x-i);
-						Coordinate postition = new Coordinate(i, j);
 						if(distanceTemp <= distance) {
 							found = false;
 							break;
