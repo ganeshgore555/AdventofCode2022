@@ -16,7 +16,7 @@ public class Day18Part1 {
 		try {
 			String line = "";
 
-			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day15Input.txt")));
+			BufferedReader br = new BufferedReader(new FileReader(new File(".//resources//Day18Input.txt")));
 
 			while ((line = br.readLine()) != null) {
 
